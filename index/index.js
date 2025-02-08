@@ -508,8 +508,6 @@ function updateStatsModal() {
     let genre2;
 
     if(firstEntry && lastEntry) {
-        console.log(firstEntry);
-        console.log(lastEntry);
         switch (firstEntry.category) {
             case "film":
                 genre1 = "Film";
