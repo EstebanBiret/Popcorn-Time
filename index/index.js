@@ -508,28 +508,28 @@ function updateStatsModal() {
     let genre2;
 
     if(firstEntry && lastEntry) {
-        switch (firstEntry.category) {
-            case "films":
+        switch (firstEntry.genre) {
+            case "film":
                 genre1 = "Film";
                 break;
-            case "series":
+            case "serie":
                 genre1 = "Série";
                 break;
-            case "animes":
+            case "anime":
                 genre1 = "Animé";
                 break;
             default:
                 genre1 = "N/A";
                 break;
         }
-        switch (lastEntry.category) {
-            case "films":
+        switch (lastEntry.genre) {
+            case "film":
                 genre2 = "Film";
                 break;
-            case "series":
+            case "serie":
                 genre2 = "Série";
                 break;
-            case "animes":
+            case "anime":
                 genre2 = "Animé";
                 break;
             default:
