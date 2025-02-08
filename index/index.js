@@ -442,10 +442,10 @@ function updateStatsModal() {
                 let entryDate = new Date(entry.timestamp);
 
                 if (!firstEntry || entryDate < new Date(firstEntry.timestamp)) {
-                    firstEntry = { name: entry.title, category: entry.category, timestamp: entry.timestamp };
+                    firstEntry = { name: entry.title, category: entry.genre, timestamp: entry.timestamp };
                 }
                 if (!lastEntry || entryDate > new Date(lastEntry.timestamp)) {
-                    lastEntry = { name: entry.title, category: entry.category, timestamp: entry.timestamp };
+                    lastEntry = { name: entry.title, category: entry.genre, timestamp: entry.timestamp };
                 }
             }
         });
@@ -508,7 +508,9 @@ function updateStatsModal() {
     let genre2;
 
     if(firstEntry && lastEntry) {
-        switch (firstEntry.genre) {
+        console.log(firstEntry);
+        console.log(lastEntry);
+        switch (firstEntry.category) {
             case "film":
                 genre1 = "Film";
                 break;
@@ -522,7 +524,7 @@ function updateStatsModal() {
                 genre1 = "N/A";
                 break;
         }
-        switch (lastEntry.genre) {
+        switch (lastEntry.category) {
             case "film":
                 genre2 = "Film";
                 break;
