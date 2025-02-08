@@ -1,0 +1,343 @@
+/* Sections */
+#films {
+    margin-top: 140px;
+}
+
+#no-entries-films, #no-entries-series, #no-entries-animes, #no-entries-favoris {
+    display: none;
+    justify-content: center !important;
+    align-items: center !important;
+}
+
+.content-section {
+    padding-bottom: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    width: 100%;
+}
+
+.container.index {
+    max-width: 1200px;
+    width: 90%;
+    position: relative;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Cartes */
+#entries-films,
+#entries-series,
+#entries-animes,
+#entries-favoris {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    justify-content: center;
+    width: 100%;
+    padding-bottom: 20px;
+}
+
+.entry {
+    position: relative;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .3);
+    background-color: #f4f4f4;
+    padding: 15px;
+    margin-top: 10px;
+    border-radius: 5px;
+    display: flex;
+    font-size: 20px;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    
+    img {
+        border-radius: 5px;
+    }
+}
+
+.title-card {
+    margin-bottom: 10px;
+    margin-top: 5px;
+}
+
+.entry-content {
+    flex: 1;
+    padding-bottom: 60px;
+}
+
+/* Image de l'oeuvre */
+.entry-image {
+    max-width: 270px;
+    height: 405px;
+    object-fit: cover;
+
+    &:hover {
+        cursor: pointer;
+        transition: all .2s ease-in-out;
+        transform: scale(1.015);
+    }
+}
+
+/* Informations alignées verticalement */
+.entry-details {
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+    align-items: center;
+}
+
+/* Statut des oeuvres */
+.date-span {
+    margin-top: 13px;
+}
+
+.rating-badge, .comment-badge {
+    background-color: #fff;
+    padding: 7px 12px;
+    border-radius: 20px;
+    font-size: 16px;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    transition: all 0.2s ease-in-out;
+}
+
+.rating-badge:hover {
+    cursor: pointer;
+    transform: scale(1.02);
+    transition: all .1s ease-in-out;
+}
+
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 7px 12px;
+    font-size: 16px;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+.status-not-started {
+    background-color: #ffcccc;
+    color: #cc0000;
+
+    &:hover {
+        transform: scale(1.02);
+        transition: all .1s ease-in-out;
+        cursor: pointer;
+    }
+}
+
+.status-in-progress {
+    background-color: #ffeb99;
+    color: #cc7a00;
+
+    &:hover {
+        transform: scale(1.02);
+        transition: all .1s ease-in-out;
+        cursor: pointer;
+    }
+}
+
+.status-completed {
+    background-color: #b2ffb2;
+    color: #008000;
+}
+
+.status-icon {
+    width: 20px;
+    height: 20px;
+    opacity: 0.7;
+    transition: opacity 0.3s;
+}
+
+/* Étoiles des notations */
+.star-icon {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    align-content: center;
+    flex-direction: row;
+    gap: 5px;
+}
+
+/* Coeur des favoris */
+.icons:hover {
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    transform: scale(1.1);
+}
+
+/* Footer */
+.entry-footer {
+    position: absolute;
+    bottom: 5px;
+    left: 10px;
+    right: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.platform-logo {
+    margin-left: 20px;
+}
+
+.actions {
+    display: flex;
+    gap: 20px;
+    justify-content: flex-end;
+    margin-right: 20px;
+    align-items: center;
+}
+
+.toggle-text {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 15px;
+
+    &:hover {
+        cursor: pointer;
+        text-decoration: underline;
+        color: #8925e7;
+    }
+}
+
+/* Fenêtres d'affichages divers */
+#status-modal-content, #rating-modal-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+    input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        margin-bottom: 10px;
+    }
+
+    button {
+        background: #8925e7;
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        color: white;
+        max-width: 150px;
+        text-transform: uppercase;
+        font-weight: bolder;
+        font-size: 15px;
+        cursor: pointer;
+        transition: 0.3s;
+    
+        &:hover {
+            background: #6a1cbf;
+        }
+    }
+
+}
+
+.comment {
+    cursor: default;
+    text-decoration: none;
+    color: black;
+}
+
+.comment.clickable {
+    cursor: pointer;
+
+    &:hover {
+        color: #8925e7;
+        text-decoration: underline;
+    }
+}
+
+.no-value {
+    color: grey;
+    font-style: italic;
+}
+
+#full-comment {
+    margin-top: 30px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.stats-container {
+    text-align: left;
+    font-size: 20px;
+    margin-top: 15px;
+}
+
+.stats-container p {
+    margin: 10px 0;
+}
+
+#plateformes-stats {
+    display: flex;
+    align-items: center;
+}
+
+/* Tris */
+.sort-options {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+
+    select {
+        max-width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+}
+
+.disabled {
+    pointer-events: none;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    #entries-films,
+    #entries-series,
+    #entries-animes,
+    #entries-favoris {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .entry {
+        padding: 5px;
+    }
+
+    .entry-image {
+        width: 100%;
+        height: auto;
+    }
+
+    .star-icon img {
+        width: 25px;
+    }
+
+    .title-card {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 500px) {
+    .sort-options {
+        justify-content: flex-start;    
+    }
+}

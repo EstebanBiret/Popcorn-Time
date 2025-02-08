@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="./new/new.css">
+    <link rel="stylesheet" type="text/css" href="./common/common.css">
+    <link rel="shortcut icon" href="../assets/logo.svg" type="image/x-icon">
+    <script src="https://code.jquery.com/jquery-3.3.1.js" crossorigin="anonymous"></script>
+    <title>Popcorn Time - Nouveau</title>
+</head>
+<body>
+    
+    <!--
+    __     ____      ________ _      _____ _   _ 
+\ \   / /\ \    / /  ____| |    |_   _| \ | |
+ \ \_/ /  \ \  / /| |__  | |      | | |  \| |
+  \   /    \ \/ / |  __| | |      | | | . ` |
+   | |      \  /  | |____| |____ _| |_| |\  |
+   |_|       \/   |______|______|_____|_| \_|
+
+   -->
+    <nav class="navbar">
+        <div class="max-width">
+            <h1><span class="title1">POPCORN </span><span class="title2">TI<span title="Motusma" id="motusma" onclick="motusma()">M</span>E</span></h1>
+            <img id="site-logo" src="../assets/logo.svg" alt="Logo du site" width="70px" title="Hmmmm">
+            <ul class="menu">
+                <li><a href="/index.html#films" class="menu-btn">Films</a></li>
+                <li><a href="/index.html#series" class="menu-btn">Séries</a></li>
+                <li><a href="/index.html#animes" class="menu-btn">Animés</a></li>
+                <li><a href="/index.html#favoris" class="menu-btn">Favoris</a></li>
+            </ul>
+            <div class="menu-btn">
+            <img id="menu-icon" src="../assets/bars.svg" alt="Menu bars" width="50px">
+            </div>
+        </div>
+    </nav>
+
+    <div class="container" id="new-container">
+        <h2 id="form-title">Ajouter une œuvre</h2>
+
+        <form id="addEntryForm">
+            <div class="required-field">
+                <input type="text" id="title" placeholder="Titre" required>
+                <span class="required-label">*</span>
+            </div>
+        
+            <input type="text" id="imageUrl" placeholder="URL de l'image (format portait pour un meilleur affichage)">
+        
+            <input type="date" id="startDate" placeholder="Date de début du visionnage">
+            
+            <input type="date" id="endDate" placeholder="Date de fin du visionnage">
+            
+            <input type="number" id="rating" placeholder="Note sur 10" min="0" max="10" step="0.1">
+
+            <textarea id="comment" placeholder="Commentaire"></textarea>
+        
+            <div class="required-field">
+                <select id="genre" required>
+                    <option value="">Type de l'œuvre</option>
+                    <option value="film">Film</option>
+                    <option value="serie">Série</option>
+                    <option value="anime">Animé</option>
+                </select>
+                <span class="required-label">*</span>
+            </div>
+        
+            <div class="required-field">
+                <select id="plateforme" required>
+                    <option value="">Plateforme de visionnage</option>
+                    <option value="adn">ADN</option>
+                    <option value="amazon">Amazon Prime Vidéo</option>
+                    <option value="canalvod">Canal VOD</option>
+                    <option value="crunchyroll">Crunchyroll</option>
+                    <option value="disney+">Disney +</option>
+                    <option value="netflix">Netflix</option>
+                    <option value="ocs">OCS</option>
+                    <option value="tele">Télévision</option>
+                    <option value="yt">YouTube</option>
+                    <option value="autre">Autre</option>
+                </select>
+                <span class="required-label">*</span>
+            </div>
+        
+            <button id="submit-button" type="submit">Ajouter</button>
+        </form>
+        
+    </div>
+
+    <div id="success-modal" class="modal">
+        <div class="modal-content" id="success-modal-content">
+            <span class="close" onclick="closeAndResetSuccessModal()">&times;</span>
+            <h5 id="modal-title">Oeuvre ajoutée avec succès !</h5>
+            <button onclick="redirectHome()">Accueil</button>
+            <button onclick="closeAndResetSuccessModal()">Ok</button>
+        </div>
+    </div>
+
+</body>
+<script src="./common/common.js"></script>
+<script src="./new/new.js"></script>
+</html>

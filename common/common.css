@@ -1,0 +1,394 @@
+html {
+    --fallback-fonts: Helvetica Neue, helvetica, arial, Hiragino Kaku Gothic ProN, Meiryo, MS Gothic;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    overflow: auto;
+    padding: 0;
+    margin: 0;
+}
+
+* {
+    -webkit-user-drag: none;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 600px;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.index {
+    max-width: 1500px !important;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+:root {
+    --encore-title-font-stack: CircularSpTitle, CircularSp-Arab, CircularSp-Hebr, CircularSp-Cyrl, CircularSp-Grek, CircularSp-Deva, var(--fallback-fonts, sans-serif);
+}
+
+/* Header */
+h1 {
+    text-align: center;
+    font-size: 50px;
+}
+
+.title1 {
+    color: #242424;
+}
+
+.title2 {
+    color: #8925e7;
+}
+
+#motusma {
+    background-size: cover;
+    background-clip: text;
+    -webkit-background-clip: text;
+    background-color: orange;
+    display: inline-block;
+    cursor: crosshair;
+    transition: all ease-in-out .2s;
+
+    &:hover {
+        transform: rotateZ(360deg);
+        scale: 1.2;
+        filter: drop-shadow(0 0 .25vh gold);
+        animation: hello 1s;
+        color: transparent;
+    }
+    
+}
+
+/* Navbar */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 999;
+    transition: all 0.7s ease;
+    background: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+}
+
+.navbar.sticky {
+    padding: 5px 0;
+    background: #8925e7;
+}
+
+.navbar .max-width {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar .menu li {
+    list-style: none;
+    display: inline-block;
+}
+
+.navbar .menu {
+    display: flex; 
+    align-items: center;
+}
+
+.navbar .menu li a {
+    display: block;
+    color: #242424;
+    font-size: 20px;
+    font-weight: bold;
+    margin-right: 25px;
+    transition: color 0.4s ease;
+    text-decoration: none;
+}
+
+.navbar .menu li a:hover {
+    color: #8925e7;
+}
+
+#a-del:hover {
+    color: red !important;
+}
+
+.navbar .menu li a.active {
+    text-decoration: underline;
+}
+
+.navbar.sticky .menu li a:hover {
+    color: #242424;
+    text-decoration: underline;
+}
+
+.navbar.sticky span {
+    color: #242424;
+}
+
+.max-width {
+    max-width: 1500px;
+    height: 100px;
+    padding: 0 80px;
+    margin: auto;
+}
+
+/* Boutons menu + scroll top */
+.menu-btn {
+    font-size: 23px;
+    cursor: pointer;
+    display: none;
+}
+
+.scroll-up-btn {
+    position: fixed;
+    height: 45px;
+    width: 42px;
+    background: #8925e7;
+    right: 30px;
+    bottom: 10px;
+    text-align: center;
+    line-height: 45px;
+    color: #fff;
+    z-index: 9999;
+    font-size: 30px;
+    border-radius: 6px;
+    border-bottom-width: 2px;
+    cursor: pointer;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.7s ease;
+}
+
+.scroll-up-btn.show {
+    bottom: 30px;
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.scroll-up-btn:hover {
+    filter: brightness(80%);
+    transition: .7s;
+}
+
+/* Fenêtres d'affichages divers */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 10000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 500px;
+    text-align: center;
+    position: relative;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    font-size: 25px;
+}
+
+#modal-title {
+    margin-top: 25px;
+    margin-bottom: 10px;
+}
+
+#modal-title-stats {
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.close {
+    position: absolute;
+    top: 0px;
+    right: 7.5px;
+    font-size: 40px;
+    cursor: pointer;
+    
+    &:hover {
+        color: red;
+        transform: scale(1.1);
+        transition: all .1s ease-in-out;
+    }
+}
+
+/* Responsive */
+@media (max-width: 1480px) {
+    .max-width {
+        padding: 0 30px !important;
+    }
+}
+
+@media (max-width: 1400px) {
+    .max-width {
+        padding: 0 10px !important;
+    }
+}
+
+@media (max-width: 1335px) {
+    .menu-btn {
+        display: flex;
+        z-index: 999;
+    }
+
+    .menu-btn i.active:before {
+        content: "\f00d";
+    }
+
+    .navbar .menu {
+        position: fixed;
+        height: 100vh;
+        width: 100%;
+        left: -110%;
+        top: 0;
+        margin: 0;
+        background: #f4f4f4;
+        text-align: center;
+        padding-top: 80px;
+        padding-left: 10px;
+        transition: all 0.7s ease;
+        display: inline-block !important;
+    }
+
+    .navbar .menu.active {
+        left: 0;
+        margin: 0;
+    }
+
+    .navbar .menu li {
+        display: block;
+    }
+
+    .navbar .menu li a {
+        display: inline-block;
+        margin: 20px 0;
+        font-size: 25px;
+    }
+}
+
+@media (max-width: 700px) {
+    .max-width {
+        padding: 0 23px;
+        height: 70px;
+    }
+
+    #site-logo {
+        width: 45px;
+        margin-left: 0px !important;
+    }
+
+    .title1, .title2 {
+        font-size: 40px;
+    }
+
+    #menu-icon {
+        width: 30px;
+    }
+
+    #films {
+        margin-top: 110px !important;
+    }
+
+    .titre-section {
+        margin: 18px;
+    }
+
+    .container.index {
+        padding: 10px;
+    }
+
+    .toggle-text {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 500px) {
+    .scroll-up-btn {
+        right: 15px;
+        bottom: 15px;
+        height: 38px;
+        width: 35px;
+        font-size: 23px;
+        line-height: 38px;
+    }
+}
+
+@media (max-width: 460px) {
+    .title1, .title2 {
+        font-size: 30px;
+    }
+
+    #menu-icon {
+        width: 30px;
+    }
+
+    #new-container{
+        margin-top: 125px !important;
+    }
+
+    #site-logo {
+        width: 30px !important;
+    }
+}
+
+@media (max-width: 350px) {
+    .title1, .title2 {
+        font-size: 20px;
+    }
+
+    #menu-icon {
+        width: 15px !important;
+    }
+
+    #new-container{
+        margin-top: 125px !important;
+    }
+
+    #site-logo {
+        width: 25px !important;
+    }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Works on Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #8925e7;
+}
+  
+/* Works on Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+    width: 12px;
+}
+
+*::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: #8925e7;
+    border-radius: 20px;
+    border: 3px solid transparent;
+}

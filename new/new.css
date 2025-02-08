@@ -1,0 +1,91 @@
+input, select, textarea, button {
+    width: 100%;
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+select {
+    max-width: 290px;
+}
+
+#new-container {
+    margin-top: 200px !important;
+    max-width: 500px;
+    padding: 30px;
+}
+
+#addEntryForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+    text-align: center;
+    align-content: center;
+}
+
+#form-title {
+    text-align: center;
+    margin-top: -10px;
+    margin-bottom: 15px;
+}
+
+button {
+    background: #8925e7;
+    color: white;
+    max-width: 150px;
+    text-transform: uppercase;
+    font-weight: bolder;
+    font-size: 15px;
+    cursor: pointer;
+    transition: 0.3s;
+
+    &:hover {
+        background: #6a1cbf;
+    }
+}
+
+.required-field {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    position: relative;
+}
+
+.required-label {
+    color: red;
+    font-size: 18px;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+/* Fenêtre */
+#success-modal-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+    button {
+        background: #8925e7;
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        color: white;
+        max-width: 150px;
+        text-transform: uppercase;
+        font-weight: bolder;
+        font-size: 15px;
+        cursor: pointer;
+        transition: 0.3s;
+    
+        &:hover {
+            background: #6a1cbf;
+        }
+    }
+}

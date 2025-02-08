@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="./index/index.css">
+    <link rel="stylesheet" type="text/css" href="./common/common.css">
+    <link rel="shortcut icon" href="../assets/logo.svg" type="image/x-icon">
+    <script src="https://code.jquery.com/jquery-3.3.1.js" crossorigin="anonymous"></script>
+    <title>Popcorn Time - Accueil</title>
+</head>
+<body>
+
+    <!--
+    __     ____      ________ _      _____ _   _ 
+\ \   / /\ \    / /  ____| |    |_   _| \ | |
+ \ \_/ /  \ \  / /| |__  | |      | | |  \| |
+  \   /    \ \/ / |  __| | |      | | | . ` |
+   | |      \  /  | |____| |____ _| |_| |\  |
+   |_|       \/   |______|______|_____|_| \_|
+   -->
+    <div class="scroll-up-btn">
+        <img src="./assets/angle-up.svg" alt="Retour vers le haut" width="40px" height="20px">
+    </div>
+
+    <nav class="navbar">
+        <div class="max-width">
+            <h1><span class="title1">POPCORN </span><span class="title2">TI<span title="Motusma" id="motusma" onclick="motusma()">M</span>E</span></h1>
+            <img id="site-logo" src="../assets/logo.svg" alt="Logo du site" width="70px" title="Hmmmm">
+            <ul class="menu">
+                <li><a href="/index.html#films" class="menu-btn">Films</a></li>
+                <li><a href="/index.html#series" class="menu-btn">Séries</a></li>
+                <li><a href="/index.html#animes" class="menu-btn">Animés</a></li>
+                <li><a href="/index.html#favoris" class="menu-btn">Favoris</a></li>
+                <li><a href="/new.html" class="menu-btn">Ajouter une oeuvre</a></li>
+                <li><a href="/index.html#films" class="menu-btn" id="a-del" onclick="deleteAllEntries()">Tout supprimer</a></li>
+                <li><a onclick="openStatsModal()" class="menu-btn">Stats</a></li>
+            </ul>
+            <div class="menu-btn">
+                <img id="menu-icon" src="../assets/bars.svg" alt="Menu bars" width="50px">
+            </div>
+        </div>
+    </nav>
+
+    <section id="films" class="content-section">
+        <div class="container index" id="container-films">
+            <div id="no-entries-films">
+                <h2>Aucun film !</h2>
+            </div>
+
+            <div class="sort-options" id="sort-options-films">
+                <label for="sort-select-films">Trier par :</label>
+                <select id="sort-select-films" onchange="sortEntries('films')">
+                    <option value="default">Défaut</option>
+                    <option value="date-ajout">Ajouté récemment</option>
+                    <option value="title-asc">A-Z</option>
+                    <option value="title-desc">Z-A</option>
+                    <option value="date-asc">Date de visionnage ↑</option>
+                    <option value="date-desc">Date de visionnage ↓</option>
+                    <option value="rating-asc">Note -</option>
+                    <option value="rating-desc">Note +</option>
+                </select>
+            </div>
+
+            <div id="entries-films"></div>
+
+        </div>
+    </section>
+    
+    <section id="series" class="content-section">
+        <div class="container index" id="container-series">
+            <div id="no-entries-series">
+                <h2>Aucune série !</h2>
+            </div>
+
+            <div class="sort-options" id="sort-options-series">
+                <label for="sort-select-series">Trier par :</label>
+                <select id="sort-select-series" onchange="sortEntries('series')">
+                    <option value="default">Défaut</option>
+                    <option value="date-ajout">Ajouté récemment</option>
+                    <option value="title-asc">A-Z</option>
+                    <option value="title-desc">Z-A</option>
+                    <option value="date-asc">Date de visionnage ↑</option>
+                    <option value="date-desc">Date de visionnage ↓</option>
+                    <option value="rating-asc">Note -</option>
+                    <option value="rating-desc">Note +</option>
+                </select>
+            </div>
+
+            <div id="entries-series"></div>
+        </div>
+    </section>
+    
+    <section id="animes" class="content-section">
+        <div class="container index" id="container-animes">
+            <div id="no-entries-animes">
+                <h2>Aucun animé !</h2>
+            </div>
+
+            <div class="sort-options" id="sort-options-animes">
+                <label for="sort-select-animes">Trier par :</label>
+                <select id="sort-select-animes" onchange="sortEntries('animes')">
+                    <option value="default">Défaut</option>
+                    <option value="date-ajout">Ajouté récemment</option>
+                    <option value="title-asc">A-Z</option>
+                    <option value="title-desc">Z-A</option>
+                    <option value="date-asc">Date de visionnage ↑</option>
+                    <option value="date-desc">Date de visionnage ↓</option>
+                    <option value="rating-asc">Note -</option>
+                    <option value="rating-desc">Note +</option>
+                </select>
+            </div>
+
+            <div id="entries-animes"></div>
+        </div>
+    </section>
+    
+    <section id="favoris" class="content-section">
+        <div class="container index" id="container-favoris">
+            <div id="no-entries-favoris">
+                <h2>Aucun favori !</h2>
+            </div>
+
+            <div class="sort-options" id="sort-options-favoris">
+                <label for="sort-select-favoris">Trier par :</label>
+                <select id="sort-select-favoris" onchange="sortEntries('favoris')">
+                    <option value="default">Défaut</option>
+                    <option value="date-ajout">Ajouté récemment</option>
+                    <option value="title-asc">A-Z</option>
+                    <option value="title-desc">Z-A</option>
+                    <option value="date-asc">Date de visionnage ↑</option>
+                    <option value="date-desc">Date de visionnage ↓</option>
+                    <option value="rating-asc">Note -</option>
+                    <option value="rating-desc">Note +</option>
+                </select>
+            </div>
+
+            <div id="entries-favoris"></div>
+        </div>
+    </section>
+    
+    <div id="comment-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeCommentModal()">&times;</span>
+            <p id="full-comment"></p>
+        </div>
+    </div>
+
+    <div id="status-modal" class="modal">
+        <div class="modal-content" id="status-modal-content">
+            <span class="close" onclick="closeStatusModal()">&times;</span>
+            <h5 id="modal-title">Modifier le statut</h5>
+            <input type="date" id="status-date">
+            <button onclick="saveStatusChange()">Valider</button>
+        </div>
+    </div>
+
+    <div id="rating-modal" class="modal">
+        <div class="modal-content" id="rating-modal-content">
+            <span class="close" onclick="closeRatingModal()">&times;</span>
+            <h5 id="modal-title">Modifier la notation</h5>
+            <input type="number" id="rating-number" placeholder="Note sur 10" min="0" max="10" step="0.1">
+            <button onclick="saveRatingChange()">Valider</button>
+        </div>
+    </div>
+
+    <div id="stats-modal" class="modal">
+        <div class="modal-content" id="stats-modal-content">
+            <span class="close" onclick="closeStatsModal()">&times;</span>
+            <h5 id="modal-title-stats">Statistiques</h5>
+            <hr>
+            <div class="stats-container">
+                <p><strong>Total d'œuvres :</strong> <span id="total-entries">0</span></p>
+                <p><strong>Films :</strong> <span id="total-films">0</span></p>
+                <p><strong>Séries :</strong> <span id="total-series">0</span></p>
+                <p><strong>Animés :</strong> <span id="total-animes">0</span></p>
+                <p><strong>Favoris :</strong> <span id="total-favoris">0</span></p>
+                <hr>
+                <p><strong>Note moyenne :</strong> <span id="average-rating">N/A</span></p>
+                <p id="plateformes-stats"><strong>Plateforme(s) la plus fréquente</strong> <span id="most-used-platform">N/A</span></p>
+                <hr>
+                <p><strong>Première œuvre ajoutée :</strong> <span id="first-entry-date">N/A</span></p>
+                <p><strong>Dernière œuvre ajoutée :</strong> <span id="last-entry-date">N/A</span></p>
+            </div>
+
+        </div>
+    </div>
+    
+</body>
+
+<script src="./common/common.js"></script>
+<script src="./index/index.js"></script>
+</html>
