@@ -30,14 +30,17 @@ function addEntry(event) {
     // Vérification que le titre et le genre sont bien renseignés
     if (!entry.title) {
         alert("Veuillez renseigner un titre.");
+        submit_button.disabled = false;
         return;
     }
     if (!entry.genre) {
         alert("Veuillez sélectionner un genre.");
+        submit_button.disabled = false;
         return;
     }
     if (!entry.plateforme) {
         alert("Veuillez sélectionner une plateforme.");
+        submit_button.disabled = false;
         return;
     }
 
@@ -46,6 +49,7 @@ function addEntry(event) {
         //si une date de fin est renseignée, on vérifie qu'il y a une date de début
         if (!entry.startDate) {
             alert("Veuillez renseigner une date de début si vous avez une date de fin.");
+            submit_button.disabled = false;
             return;
         }
 
@@ -53,6 +57,7 @@ function addEntry(event) {
         if(entry.startDate) {
             if (new Date(entry.endDate) < new Date(entry.startDate)) {
                 alert("La date de fin ne peut pas être antérieure à la date de début !");
+                submit_button.disabled = false;
                 return;
             }
         }
