@@ -124,7 +124,23 @@ function checkImageExists(url, callback) {
 }
 
 function redirectHome() {
-    window.location.href = "index.html";
+    let genre = document.getElementById('genre').value;
+    let category = "";
+
+    switch (genre) {
+        case "film":
+            category = "#films";
+            break;
+        case "serie":
+            category = "#series";
+            break;
+        case "anime":
+            category = "#animes";
+            break;
+        default:
+            category = "";
+    }
+    window.location.href = "index.html" + category;
 }
 
 function closeSuccessModal() {

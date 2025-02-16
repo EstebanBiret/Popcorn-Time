@@ -646,11 +646,11 @@ function sortEntries(category) {
             });
             break;
         case "date-ajout":
-            entries.sort((a, b) => new Date(b.timestamp || "9999-12-31") - new Date(a.timestamp || "9999-12-31")); //ajouté récemment
+            entries.sort((a, b) => new Date(a.timestamp || "9999-12-31") - new Date(b.timestamp || "9999-12-31")); //ordre d'ajout dans le site
             break;
         case "default":
         default:
-            entries.sort((a, b) => new Date(a.timestamp || "9999-12-31") - new Date(b.timestamp || "9999-12-31")); //ordre d'ajout dans le site
+            entries.sort((a, b) => new Date(b.timestamp || "9999-12-31") - new Date(a.timestamp || "9999-12-31")); //ajouté récemment
             break;
     }
     localStorage.setItem(`entries-${category}`, JSON.stringify(entries));
@@ -661,7 +661,7 @@ function sortEntries(category) {
 function initialSort() {
     categories.forEach(category => {
         const entries = JSON.parse(localStorage.getItem(`entries-${category}`)) || [];
-        entries.sort((a, b) => new Date(a.timestamp || "9999-12-31") - new Date(b.timestamp || "9999-12-31")); //ordre d'ajout dans le site
+        entries.sort((a, b) => new Date(b.timestamp || "9999-12-31") - new Date(a.timestamp || "9999-12-31")); //ajouté récemment
         localStorage.setItem(`entries-${category}`, JSON.stringify(entries));
     });
 }
