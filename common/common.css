@@ -53,7 +53,7 @@ h1 {
     color: #8925e7;
 }
 
-#motusma {
+#minedle {
     background-size: cover;
     background-clip: text;
     -webkit-background-clip: text;
@@ -119,8 +119,10 @@ h1 {
     color: #8925e7;
 }
 
-#a-del:hover {
-    color: red !important;
+#parameters:hover {
+    transform: scale(1.1);
+    transition: all .1s ease-in-out;
+    cursor: pointer;
 }
 
 .navbar .menu li a.active {
@@ -211,7 +213,7 @@ h1 {
     margin-bottom: 10px;
 }
 
-#modal-title-stats {
+#modal-title-stats, #modal-title-parameters {
     margin-top: 0;
     margin-bottom: 20px;
 }
@@ -231,19 +233,19 @@ h1 {
 }
 
 /* Responsive */
-@media (max-width: 1480px) {
+@media (max-width: 1335px) {
     .max-width {
         padding: 0 30px !important;
     }
 }
 
-@media (max-width: 1400px) {
+@media (max-width: 1235px) {
     .max-width {
         padding: 0 10px !important;
     }
 }
 
-@media (max-width: 1335px) {
+@media (max-width: 1190px) {
     .menu-btn {
         display: flex;
         z-index: 999;

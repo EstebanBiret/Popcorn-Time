@@ -1,5 +1,5 @@
-function motusma() {
-    const url = 'https://motusma.biret-toscano.fr/'
+function minedle() {
+    const url = 'https://minedle.biret-toscano.fr/'
     window.open(url, '_blank');  
 }
 

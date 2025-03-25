@@ -13,6 +13,7 @@ let comment_modal = document.getElementById("comment-modal");
 let status_modal = document.getElementById("status-modal");
 let rating_modal = document.getElementById("rating-modal");
 let stats_modal = document.getElementById("stats-modal");
+let parameters_modal = document.getElementById("parameters-modal");
 const categories = ['films', 'series', 'animes', 'favoris'];
 
 //charger l'ensemble des oeuvres
@@ -216,6 +217,8 @@ function deleteAllEntries() {
         
         loadEntries();
     }
+
+    closeParametersModal();
 }
 
 //affichage dynamique des titres de sections 
@@ -560,6 +563,132 @@ function openStatsModal() {
     stats_modal.style.display = "flex";
 }
 
+/* PARAMETRES */ 
+
+const ENCRYPTION_KEY = new TextEncoder().encode("ouijesaiscestpassecurisemaisosef");
+
+// Liste des clés spécifiques à exporter/importer
+const KEYS_TO_EXPORT = ["entries-films", "entries-series", "entries-animes", "entries-favoris"];
+
+function arrayBufferToBase64(buffer) {
+    return btoa(String.fromCharCode(...new Uint8Array(buffer)));
+}
+
+function base64ToArrayBuffer(base64) {
+    let binaryString = atob(base64);
+    let bytes = new Uint8Array(binaryString.length);
+    for (let i = 0; i < binaryString.length; i++) {
+        bytes[i] = binaryString.charCodeAt(i);
+    }
+    return bytes.buffer;
+}
+
+async function getCryptoKey() {
+    return await window.crypto.subtle.importKey(
+        "raw",
+        ENCRYPTION_KEY,
+        { name: "AES-GCM" },
+        false,
+        ["encrypt", "decrypt"]
+    );
+}
+
+async function exportData() {
+    let allData = {};
+
+    // Récupérer uniquement les 4 clés spécifiques
+    KEYS_TO_EXPORT.forEach(key => {
+        let value = localStorage.getItem(key);
+        if (value !== null) {
+            allData[key] = value;
+        }
+    });
+
+    if (Object.keys(allData).length === 0) {
+        alert("Aucune donnée trouvée.");
+        return;
+    }
+
+    let key = await getCryptoKey();
+    let iv = window.crypto.getRandomValues(new Uint8Array(12));
+    let encodedData = new TextEncoder().encode(JSON.stringify(allData));
+
+    let encryptedData = await window.crypto.subtle.encrypt(
+        { name: "AES-GCM", iv },
+        key,
+        encodedData
+    );
+
+    let exportObject = {
+        iv: arrayBufferToBase64(iv),
+        data: arrayBufferToBase64(encryptedData)
+    };
+
+    let blob = new Blob([JSON.stringify(exportObject)], { type: "application/json" });
+    let a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    let date = new Date();
+    let dateStr = date.toISOString().slice(0, 19).replace("T", "_").replace(/:/g, "-");
+    a.download = `popcorn_time_donnees_${dateStr}.json`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    closeParametersModal();
+}
+
+async function importData() {
+    let input = document.createElement("input");
+    input.type = "file";
+    input.accept = "application/json";
+    input.onchange = async function (event) {
+        let file = event.target.files[0];
+        if (!file) return;
+
+        let reader = new FileReader();
+        reader.onload = async function () {
+            try {
+                let importObject = JSON.parse(reader.result);
+                let iv = base64ToArrayBuffer(importObject.iv);
+                let encryptedData = base64ToArrayBuffer(importObject.data);
+
+                let key = await getCryptoKey();
+                let decryptedData = await window.crypto.subtle.decrypt(
+                    { name: "AES-GCM", iv },
+                    key,
+                    encryptedData
+                );
+
+                let decodedData = new TextDecoder().decode(decryptedData);
+                let allData = JSON.parse(decodedData);
+
+                // Nettoyage avant l'importation (uniquement les 4 clés)
+                KEYS_TO_EXPORT.forEach(key => localStorage.removeItem(key));
+
+                // Restaurer chaque élément du localStorage
+                Object.keys(allData).forEach(key => {
+                    if (KEYS_TO_EXPORT.includes(key)) {
+                        localStorage.setItem(key, allData[key]);
+                    }
+                });
+
+                alert("Données importées avec succès !");
+                closeParametersModal();
+                loadEntries();
+            } catch (error) {
+                alert("Erreur lors de l'importation : le fichier est corrompu !");
+                console.error(error);
+            }
+        };
+        reader.readAsText(file);
+    };
+    input.click();
+}
+
+//fenêtre des paramètres
+function openParametersModal() {
+    parameters_modal.style.display = "flex";
+}
+
 //arrondir et gérer les possibles incohérences
 document.getElementById('rating-number').addEventListener('input', function () {
     let value = parseFloat(this.value);
@@ -583,6 +712,9 @@ function closeRatingModal() {
 function closeStatsModal() {
     stats_modal.style.display = "none";
 }
+function closeParametersModal() {
+    parameters_modal.style.display = "none";
+}
 
 //on ferme aussi si on clique en dehors
 window.onclick = function(event) {
@@ -598,6 +730,9 @@ window.onclick = function(event) {
     else if (event.target === stats_modal) {
         closeStatsModal();
     }
+    else if (event.target === parameters_modal) {
+        closeParametersModal();
+    }
 };
 
 //et si echap pressé
@@ -607,6 +742,7 @@ document.onkeydown = function(evt) {
         closeStatusModal();
         closeRatingModal();
         closeStatsModal();
+        closeParametersModal();
     }
     else if (evt.key === "F12") {
         alert("Bon allez ... 😏");
