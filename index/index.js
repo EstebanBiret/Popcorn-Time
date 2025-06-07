@@ -762,10 +762,10 @@ function sortEntries(category) {
             entries.sort((a, b) => b.title.localeCompare(a.title));
             break;
         case "date-asc":
-            entries.sort((a, b) => new Date(a.endDate || "9999-12-31") - new Date(b.endDate || "9999-12-31"));
+            entries.sort((a, b) => new Date(a.startDate || "9999-12-31") - new Date(b.startDate || "9999-12-31"));
             break;
         case "date-desc":
-            entries.sort((a, b) => new Date(b.endDate || "9999-12-31") - new Date(a.endDate || "9999-12-31"));
+            entries.sort((a, b) => new Date(b.startDate || "9999-12-31") - new Date(a.startDate || "9999-12-31"));
             break;
         case "rating-asc":
             entries.sort((a, b) => {
